@@ -1,0 +1,22 @@
+@*
+SIZE can be (full, half, third, quarter)
+THEME depends on design
+*@
+
+<div class="tile tile_@SIZE tile_@THEME">
+	<div class="tile__media">
+		<img srcset="https://dummyimage.com/722x481/f7f4f1/4d607d 722w,
+								https://dummyimage.com/600x400/f7f4f1/4d607d 600w,
+								https://dummyimage.com/300x200/f7f4f1/4d607d 300w"
+			sizes="(max-width: 480px) 600px, (max-width: 823px) 722px,300px" src="https://dummyimage.com/300x200/f7f4f1/4d607d"
+			class="tile__img" />
+	</div>
+	<div class="tile__content">
+		<div class="tile__eyebrow">@CATEGORY</div>
+		<h4 class="tile__title"><a href="@LINK" class="tile__link">@TITLE</a></h4>
+		<div class="tile__summary">@SUMMARY</div>
+		<div class="tile__location">@LOCATION</div>
+		<time datetime="@DATEFORMAT:2018-11-14" class="tile__date">@DATE<</time>
+		<div class="tile__button">@BUTTON_TEXT</div>
+	</div>
+</div>
