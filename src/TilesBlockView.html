@@ -1,0 +1,163 @@
+<div data-ng-controller="TilesBlock.Controller" class="accordion umb-pane">
+
+	<div id="tilesBlock">
+		<div ng-repeat="item in control.value">
+
+			<div class="umb-box news-tile" ng-if="item.type == 'newsTile'">
+				<div class="umb-box-header">
+					<div class="umb-box-header-title umb-row-title-bar">
+						<div class="umb-control-title">
+							News tile <span ng-if="!control.active"> - {{item.contentName}}</span>
+						</div>
+						<div class="umb-tools ng-scope" ng-if="control.active">
+							<div class="umb-control-tool">
+								<i class="umb-control-tool-icon icon-trash" ng-click="togglePrompt(item)"></i>
+								<umb-confirm-action ng-if="item.deletePrompt"
+													direction="left"
+													on-confirm="removeItem(item)"
+													on-cancel="hidePrompt(item)">
+								</umb-confirm-action>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="block-form umb-box-content" ng-if="control.active">
+					<div class="nav nav-stacked" style="margin-bottom: 0;">
+						<input type="hidden" ng-model="item.contentId" required name="contentId"/>
+						<a ng-click="openContentPickerDialog(item)">
+							<i class="icon icon-window-popin"></i>
+							<span>{{item.contentName}}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="umb-box custom-tile" ng-if="item.type == 'customTile'">
+				<div class="umb-box-header">
+					<div class="umb-box-header-title umb-row-title-bar">
+						<div class="umb-control-title">
+							Custom tile <span ng-if="!control.active"> - {{item.title}}</span>
+						</div>
+						<div class="umb-tools ng-scope" ng-if="control.active">
+							<div class="umb-control-tool">
+								<i class="umb-control-tool-icon icon-trash" ng-click="togglePrompt(item)"></i>
+								<umb-confirm-action ng-if="item.deletePrompt"
+													direction="left"
+													on-confirm="removeItem(item)"
+													on-cancel="hidePrompt(item)">
+								</umb-confirm-action>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="block-form umb-box-content" ng-if="control.active">
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Title</span>
+								</label>
+								<div class="controls controls-row">
+									<input type="text" class="input-block-level" ng-model="item.title" required />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Category \ Eyebrow</span>
+								</label>
+								<div class="controls controls-row">
+									<input type="text" class="input-block-level" ng-model="item.eyebrow" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Description</span>
+								</label>
+								<div class="controls controls-row">
+									<textarea class="input-block-level" ng-model="item.description" required rows="3"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Image</span>
+								</label>
+								<div class="controls controls-row">
+									<div class="umb-editor umb-mediapicker">
+										<a ng-if="!item.image" class="add-link add-link-square" ng-click="addImage(item)">
+											<i class="icon icon-add large"></i>
+										</a>
+										<ul class="umb-sortable-thumbnails" ng-if="item.image">
+											<li>
+												<img title="Image" src="{{item.image}}?width=136">
+												<div class="umb-sortable-thumbnails__actions" data-element="sortable-thumbnail-actions">
+													<a class="umb-sortable-thumbnails__action -red" data-element="action-remove" ng-click="removeImage(item)">
+														<i class="icon icon-delete"></i>
+													</a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Link</span>
+								</label>
+								<div class="controls controls-row">
+									<div class="gibe-link-picker">
+										<p class="chosen" ng-show="item.link">
+											<a href="{{item.link.url}}" target="_blank">{{item.link.name || item.link.url}}</a>
+											<a class="remove" href="" ng-click="removeLink(item)"><i class="icon icon-delete"></i></a>
+											<a class="edit" href="" ng-click="editLink(item)"><i class="icon icon-edit"></i></a>
+										</p>
+										<p class="internal-picker" ng-hide="item.link">
+											<a class="link" href="" ng-click="chooseLink(item)">Choose</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="umb-add-row accordion-tab__add-btn" ng-if="!sortMode && ((control.value.length > 0 && control.active) || control.value.length == 0)">
+		Add new Tile<br />
+		<a href="" class="iconBox" ng-click="openOverlay($event)">
+			<i class=" icon icon-add" title="Add new tile"></i>
+		</a>
+	</div>
+	<umb-overlay ng-if="overlay.show"
+				 model="overlay"
+				 view="overlay.view"
+				 position="target">
+	</umb-overlay>
+
+	<umb-overlay ng-if="mediaPickerOverlay.show"
+				 model="mediaPickerOverlay"
+				 view="mediaPickerOverlay.view"
+				 position="right">
+	</umb-overlay>
+</div>
