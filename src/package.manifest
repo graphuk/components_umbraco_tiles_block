@@ -1,0 +1,14 @@
+{
+	"gridEditors": [
+		{
+			"name": "Tiles Block",
+			"alias": "tilesBlock",
+			"view": "/App_Plugins/TilesBlock/TilesBlockView.html",
+			"render": "/App_Plugins/TilesBlock/Views/TilesBlockRender.cshtml",
+			"icon": "icon-umb-contour"
+		}
+	],
+	"javascript": [
+		"/App_Plugins/TilesBlock/TilesBlock.Controller.js"
+	]
+}

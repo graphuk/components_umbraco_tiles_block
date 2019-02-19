@@ -1,0 +1,11 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<Graph.Components.TilesBlock.GridControlCustomTile>
+
+<p>@Model.Title</p>
+<p>@Model.Eyebrow</p>
+<p>@Model.Description</p>
+<img src="@Model.Image" />
+
+@if (Model.Link != null)
+{
+	<a href="@(Model.Link.Url + (string.IsNullOrEmpty(Model.Link.Hashtarget) == false ? $"#{Model.Link.Hashtarget}" : string.Empty))" target="@Model.Link.Target">@Model.Link.Name</a>
+}

@@ -1,0 +1,5 @@
+{
+	"name": "TilesBlock",
+	"destination": "App_Plugins",
+	"addToCsproj": true
+}

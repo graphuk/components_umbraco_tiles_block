@@ -1,0 +1,10 @@
+@using Graph.Components.TilesBlock
+@using Skybrud.Umbraco.GridData.Rendering
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<GridControlWrapper<GridControlTileValue>>
+
+<div class="tiles">
+	@foreach (var tile in Model.Value.Tiles)
+	{
+		@Html.RenderTile(tile)
+	}
+</div>
