@@ -1,4 +1,5 @@
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<Graph.Components.TilesBlock.GridControlCustomTile>
+@using System;
 
 @{
 	var ShowButton = true;
@@ -8,13 +9,16 @@
 
 <div class="tile tile_@Size tile_@Theme">
 	<div class="tile__media">
-		@if (Model.Image != null)
+		@if (!string.IsNullOrEmpty(@Model.Image))
 		{
-			<img src="@Model.Image" class="tile__img" />
+			<img src="@Model.Image" alt="" class="tile__img" />
 		}
 	</div>
 	<div class="tile__content">
-		@if (Model.Eyebrow != null) {<div class="tile__eyebrow">@Model.Eyebrow</div>}
+		@if (!string.IsNullOrEmpty(@Model.Eyebrow))
+		{
+			<div class="tile__eyebrow">@Model.Eyebrow</div>
+		}
 
 		<h4 class="tile__title">
 			@if (Model.Link != null)
@@ -25,11 +29,12 @@
 				<span>@Model.Title</span>
 			}
 		</h4>
-		@if (Model.Description != null) { <div class="tile__summary">@Model.Description</div> }
+
+		@if (!string.IsNullOrEmpty(@Model.Description)) { <div class="tile__summary">@Model.Description</div> }
 
 		@if (Model.Link != null && ShowButton == true) 
 		{
-			<div class="tile__button"> @Model.Link.Name</div>
+			<span class="tile__button"> @Model.Link.Name</span>
 		}
 	</div>
 </div>
