@@ -1,23 +1,25 @@
 @tablet: ~"(min-width: 736px)";
 @desktop: ~"(min-width: 1025px)";
 
-@gap: 30px;
+@gridColumnSpace: 30px;
+@mobileSideSpace: 30px;
 @padding: 30px;
+@spaceText: 8px;
+
 
 .widhColumns(@count) {
-	flex-basis: ~'calc(100% / @{count} - @{gap})';
-	max-width: ~'calc(100% / @{count} - @{gap})';
+	flex: 0 0 ~'calc(100% / @{count} - @{gridColumnSpace})';
+	max-width: ~'calc(100% / @{count} - @{gridColumnSpace})';
+	min-width: ~'calc(100% / @{count} - @{gridColumnSpace})';
 }
 
 .tile {
-	box-sizing: border-box;
-	flex: 0 0 100%;
-	max-width: 100%;
-	margin-bottom: @gap;
-	padding: @padding;
-	margin: @gap / 2;
 	.widhColumns(1);
+	box-sizing: border-box;
+	padding: @padding;
+	margin: @gridColumnSpace / 2;
 	background: lightgray;
+	position: relative;
 
 	&_half {
 		@media @tablet {
@@ -46,43 +48,75 @@
 	}
 
 	&__media {
+		position: relative;
+		width: 100%;
+		height: 0;
+		padding-top: 2/ 3 * 100%;
+		overflow: hidden;
+		transition: all 0.2s ease-in;
+	}
 
+	&:hover &__media {
+		transform: scale(1.04);
 	}
 
 	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 	}
 
 	&__content {
-
+		margin-top: @spaceText * 2;
 	}
 
 	&__eyebrow {
-
+		margin-top: @spaceText;
 	}
 
 	&__title {
-
+		margin-top: @spaceText;
 	}
 
 	&__link {
 		color: inherit;
 		text-decoration: none;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: block;
+		}
 	}
 
 	&__summary {
-
+		margin-top: @spaceText;
 	}
 
 	&__location {
-
+		margin-top: @spaceText;
+		font-size: smaller;
 	}
 
 	&__date {
-
+		margin-top: @spaceText;
+		font-size: smaller;
 	}
 
 	&__button {
+		margin-top: @spaceText * 2;
+		padding: 5px 30px;
+		border-style: solid;
+		border-width: 2px;
+		display: inline-block;
+	}
 
+	&:hover &__button {
+		background: fade(#000000, 10%);
 	}
 }

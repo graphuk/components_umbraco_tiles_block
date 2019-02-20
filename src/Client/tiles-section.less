@@ -1,8 +1,14 @@
-@gap: 30px;
+@gridColumnSpace: 30px;
+@mobileSideSpace: 30px;
+@tablet: ~"(min-width: 736px)";
 
 .tiles-section {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	margin: 0 -@gap / 2;
+	margin: -@gridColumnSpace / 2 - @mobileSideSpace;
+
+	@media @tablet {
+		margin: 0 -@gridColumnSpace / 2;
+	}
 }
