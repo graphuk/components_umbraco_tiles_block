@@ -1,13 +1,6 @@
 @inherits Umbraco.Web.Mvc.UmbracoViewPage <Graph.Components.TilesBlock.GridControlNewsTile>
-@using System;
 
-@{
-	var ShowButton = true;
-	var Size = "half"; //  can be (full, half, third, quarter)
-	var Theme = ""; //depends on design
-}
-
-<div class="tile tile_@Size tile_@Theme">
+<div class="tile tile_@Model.Size.Value tile_@Model.Theme.Value">
 	<div class="tile__media">
 		@if (Model.Image != null)
 		{
@@ -15,11 +8,13 @@
 		}
 	</div>
 	<div class="tile__content">
-		@if (Model.Link != null)
+		<h4 class="tile__title">
+			@if (Model.Link != null)
 			{
-				<a class="tile__link" href="@(Model.Link.Url + (string.IsNullOrEmpty(Model.Link.Hashtarget) == false ? $"#{Model.Link.Hashtarget}" : string.Empty))" 	target="@Model.Link.Target">@Model.Title</a>
+				<a class="tile__link" href="@Model.Link">@Model.Title</a>
 			}
-			else {
+			else 
+			{
 				<span>@Model.Title</span>
 			}
 		</h4>
@@ -29,11 +24,14 @@
 			<div class="tile__summary">@Model.Description</div> 
 		}
 
-		@if (Model.Date != null) {<div class="tile__date">@Model.Date/div>}
-
-		@if (Model.Link != null && ShowButton == true)
+		@if (Model.Date != null)
 		{
-			<div class="tile__button"> @Model.Link.Name</div>
+			<div class="tile__date">@Model.Date</div>
+		}
+
+		@if (Model.Link != null && Model.ShowButton)
+		{
+			<div class="tile__button">@Model.Title</div>
 		}
 	</div>
 </div>

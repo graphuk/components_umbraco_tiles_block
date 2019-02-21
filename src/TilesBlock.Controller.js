@@ -1,4 +1,4 @@
-angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, dialogService, entityResource) {
+angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, dialogService, entityResource, tilesBlockApi) {
 
 	$scope.sortMode = false;
 
@@ -11,9 +11,18 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 		this.description = '';
 		this.image = null;
 		this.link = null;
+		this.showButton = false;
+		this.size = null;
+		this.theme = null;
 	}
 
 	$scope.control.value = $scope.control.value || [];
+	$scope.tilesSettings = {};
+
+	tilesBlockApi.getTilesSettings()
+		.then(function (json) {
+			$scope.tilesSettings = json.data;
+		});
 
 	$scope.addItem = function (alias) {
 		$scope.control.value.push(new Item(alias));

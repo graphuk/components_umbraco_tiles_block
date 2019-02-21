@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Umbraco.Web;
@@ -40,7 +41,10 @@ namespace Graph.Components.TilesBlock
 					Description = item.GetPropertyValue<string>(NewsTileConfig.Description),
 					Date = item.GetPropertyValue<DateTime>(NewsTileConfig.Date),
 					Link = item.Url,
-					Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image).Url
+					Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image).Url,
+					ShowButton = tile.Value<bool>(nameof(IGridControlTileItem.ShowButton)),
+					Size = tile.Value<KeyValuePair<string,string>>(nameof(IGridControlTileItem.Size)),
+					Theme = tile.Value<KeyValuePair<string,string>>(nameof(IGridControlTileItem.Theme))
 				};
 
 				return newsTile;

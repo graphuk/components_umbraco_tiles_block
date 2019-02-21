@@ -139,6 +139,45 @@
 						</div>
 					</div>
 
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Show button</span>
+								</label>
+								<div class="controls controls-row">
+									<input type="checkbox" ng-model="item.showButton" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Size</span>
+								</label>
+								<div class="controls controls-row">
+									<select ng-model="item.size" ng-options="size as size.Key for size in tilesSettings.TileSizes track by size.Value"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="umb-property">
+						<div class="control-group umb-control-group">
+							<div class="umb-el-wrap">
+								<label class="control-label">
+									<span>Theme</span>
+								</label>
+								<div class="controls controls-row">
+									<select ng-model="item.theme" ng-options="theme as theme.Key for theme in tilesSettings.Themes track by theme.Value"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
