@@ -1,11 +1,40 @@
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<Graph.Components.TilesBlock.GridControlCustomTile>
+@using System;
 
-<p>@Model.Title</p>
-<p>@Model.Eyebrow</p>
-<p>@Model.Description</p>
-<img src="@Model.Image" />
-
-@if (Model.Link != null)
-{
-	<a href="@(Model.Link.Url + (string.IsNullOrEmpty(Model.Link.Hashtarget) == false ? $"#{Model.Link.Hashtarget}" : string.Empty))" target="@Model.Link.Target">@Model.Link.Name</a>
+@{
+	var ShowButton = true;
+	var Size = "half"; //  can be (full, half, third, quarter)
+	var Theme = ""; //depends on design
 }
+
+<div class="tile tile_@Size tile_@Theme">
+	<div class="tile__media">
+		@if (!string.IsNullOrEmpty(@Model.Image))
+		{
+			<img src="@Model.Image" alt="" class="tile__img" />
+		}
+	</div>
+	<div class="tile__content">
+		@if (!string.IsNullOrEmpty(@Model.Eyebrow))
+		{
+			<div class="tile__eyebrow">@Model.Eyebrow</div>
+		}
+
+		<h4 class="tile__title">
+			@if (Model.Link != null)
+			{
+				<a class="tile__link" href="@(Model.Link.Url + (string.IsNullOrEmpty(Model.Link.Hashtarget) == false ? $"#{Model.Link.Hashtarget}" : string.Empty))" 	target="@Model.Link.Target">@Model.Title</a>
+			}
+			else {
+				<span>@Model.Title</span>
+			}
+		</h4>
+
+		@if (!string.IsNullOrEmpty(@Model.Description)) { <div class="tile__summary">@Model.Description</div> }
+
+		@if (Model.Link != null && ShowButton == true) 
+		{
+			<span class="tile__button"> @Model.Link.Name</span>
+		}
+	</div>
+</div>
