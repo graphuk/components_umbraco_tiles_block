@@ -18,14 +18,20 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 
 	$scope.control.value = $scope.control.value || [];
 	$scope.tilesSettings = {};
+	$scope.availableItems = [];
 
 	tilesBlockApi.getTilesSettings()
 		.then(function (json) {
 			$scope.tilesSettings = json.data;
 		});
 
-	$scope.addItem = function (alias) {
-		$scope.control.value.push(new Item(alias));
+	tilesBlockApi.getTilesTypes()
+		.then(function (json) {
+			$scope.availableItems = json.data;
+		});
+
+	$scope.addItem = function (itemType) {
+		$scope.control.value.push(new Item(itemType));
 		_.defer(function () { $scope.$apply(); });
 	}
 
@@ -34,18 +40,9 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 		_.defer(function () { $scope.$apply(); });
 	}
 
-	$scope.availableItems = [
-		/*{
-			alias: 'newsTile',
-			name: 'News tile',
-			icon: 'icon-newspaper-alt'
-		}*/,
-		{
-			alias: 'customTile',
-			name: 'Custom tile',
-			icon: 'icon-post-it'
-		}
-	];
+	$scope.isContentItem = function (item) {
+		return item.type.alias == 'newsTile' || item.type.alias == 'eventTile';
+	}
 
 	$scope.openOverlay = function (event) {
 		$scope.overlay = {
@@ -56,7 +53,7 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 			event: event,
 			availableItems: $scope.availableItems,
 			submit: function (model) {
-				$scope.addItem(model.selectedItem.alias);
+				$scope.addItem(model.selectedItem);
 				$scope.overlay.show = false;
 				$scope.overlay = null;
 			},
@@ -70,7 +67,7 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 	$scope.openContentPickerDialog = function (item) {
 		dialogService.treePicker({
 			filterCssClass: 'not-allowed not-published',
-			//filter: "newsItem,smthElse",
+			filter: item.type.contentAlias,
 			treeAlias: 'content',
 			section: 'content',
 			callback: function (data) {

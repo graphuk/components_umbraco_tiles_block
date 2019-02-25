@@ -15,11 +15,46 @@ namespace Graph.Components.TilesBlock
 				Themes = TilesSettingsConfig.Themes
 			};
 		}
+
+		public TileType[] GetTilesTypes()
+		{
+			return new[]
+			{
+				new TileType
+				{
+					Alias = "newsTile",
+					ContentAlias = NewsTileConfig.PageAlias,
+					Name = "News tile",
+					Icon = "icon-newspaper-alt"
+				}, 
+				new TileType
+				{
+					Alias = "eventTile",
+					ContentAlias = EventTileConfig.PageAlias,
+					Name = "Event tile",
+					Icon = "icon-calendar"
+				}, 
+				new TileType
+				{
+					Alias = "customTile",
+					Name = "Custom tile",
+					Icon = "icon-post-it"
+				} 
+			};
+		}
 	}
 
 	public class TilesSetting
 	{
 		public IEnumerable<KeyValuePair<string, string>> TileSizes { get; set; }
 		public IEnumerable<KeyValuePair<string, string>> Themes { get; set; }
+	}
+
+	public class TileType
+	{
+		public string Alias { get; set; }
+		public string ContentAlias { get; set; }
+		public string Name { get; set; }
+		public string Icon { get; set; }
 	}
 }

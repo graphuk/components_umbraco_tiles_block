@@ -4,6 +4,10 @@
 		return {
 			getTilesSettings: function () {
 				return $http.get(umbRequestHelper.getApiUrl("tilesBlockApi", "GetTilesSettings"));
+			},
+
+			getTilesTypes: function () {
+				return $http.get(umbRequestHelper.getApiUrl("tilesBlockApi", "GetTilesTypes"));
 			}
 		};
 	}

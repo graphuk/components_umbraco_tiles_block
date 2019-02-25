@@ -9,6 +9,10 @@
 	</div>
 	<div class="tile__content">
 		<h4 class="tile__title">
+			@if (!string.IsNullOrEmpty(@Model.Eyebrow))
+			{
+				<div class="tile__eyebrow">@Model.Eyebrow</div>
+			}
 			@if (Model.Link != null)
 			{
 				<a class="tile__link" href="@Model.Link">@Model.Title</a>
