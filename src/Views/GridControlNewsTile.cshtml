@@ -23,9 +23,9 @@
 			}
 		</h4>
 
-		@if (!string.IsNullOrEmpty(@Model.Description))
+		@if (!string.IsNullOrEmpty(@Model.Summary))
 		{
-			<div class="tile__summary">@Model.Description</div> 
+			<div class="tile__summary">@Model.Summary</div> 
 		}
 
 		@if (Model.Date != null)

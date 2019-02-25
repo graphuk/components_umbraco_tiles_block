@@ -8,7 +8,7 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 		this.type = type;
 		this.title = '';
 		this.eyebrow = '';
-		this.description = '';
+		this.summary = '';
 		this.image = null;
 		this.link = null;
 		this.showButton = false;

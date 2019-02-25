@@ -38,7 +38,7 @@ namespace Graph.Components.TilesBlock
 			{
 				var newsTile = tile.ToObject<GridControlNewsTile>(serializer);
 				newsTile.Title = item.GetPropertyValue<string>(NewsTileConfig.Title);
-				newsTile.Description = item.GetPropertyValue<string>(NewsTileConfig.Description);
+				newsTile.Summary = item.GetPropertyValue<string>(NewsTileConfig.Summary);
 				newsTile.Date = item.GetPropertyValue<DateTime>(NewsTileConfig.Date);
 				newsTile.Eyebrow = item.GetPropertyValue<string>(NewsTileConfig.Eyebrow);
 				newsTile.Link = item.Url;
@@ -58,7 +58,7 @@ namespace Graph.Components.TilesBlock
 			{
 				var eventTile = tile.ToObject<GridControlEventTile>(serializer);
 				eventTile.Title = item.GetPropertyValue<string>(EventTileConfig.Title);
-				eventTile.Description = item.GetPropertyValue<string>(EventTileConfig.Description);
+				eventTile.Summary = item.GetPropertyValue<string>(EventTileConfig.Summary);
 				eventTile.Eyebrow = item.GetPropertyValue<string>(EventTileConfig.Eyebrow);
 				eventTile.Location = item.GetPropertyValue<string>(EventTileConfig.Location);
 				eventTile.StartDate = item.GetPropertyValue<DateTime>(EventTileConfig.StartDate);

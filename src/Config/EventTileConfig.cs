@@ -4,7 +4,7 @@ namespace Graph.Components.TilesBlock
 	{
 		public const string PageAlias = "EventPage";
 		public const string Title = "title";
-		public const string Description = "description";
+		public const string Summary = "summary";
 		public const string StartDate = "startDate";
 		public const string EndDate = "endDate";
 		public const string Eyebrow = "eyebrow";

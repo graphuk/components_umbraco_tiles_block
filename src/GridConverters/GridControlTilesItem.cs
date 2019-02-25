@@ -8,7 +8,7 @@ namespace Graph.Components.TilesBlock
 	{
 		public string Title { get; set; }
 		public string Image { get; set; }
-		public string Description { get; set; }
+		public string Summary { get; set; }
 		public string Eyebrow { get; set; }
 		public string Link { get; set; }
 		public DateTime Date { get; set; }
@@ -21,7 +21,7 @@ namespace Graph.Components.TilesBlock
 	{
 		public string Title { get; set; }
 		public string Image { get; set; }
-		public string Description { get; set; }
+		public string Summary { get; set; }
 		public string Eyebrow { get; set; }
 		public string Link { get; set; }
 		public string Location { get; set; }
@@ -35,7 +35,7 @@ namespace Graph.Components.TilesBlock
 	public class GridControlCustomTile : IGridControlTileItem
 	{
 		public string Title { get; set; }
-		public string Description { get; set; }
+		public string Summary { get; set; }
 		public string Eyebrow { get; set; }
 		public string Image { get; set; }
 		public LinkPicker Link { get; set; }
