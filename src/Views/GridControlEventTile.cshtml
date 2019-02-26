@@ -1,0 +1,27 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage <Graph.Components.TilesBlock.GridControlEventTile>
+
+<div class="tile tile_@(Model.Size?.Value)">
+	<div class="tile__media">
+		@if (string.IsNullOrEmpty(Model.Image) == false) 
+		{
+			<img src="@Model.Image" class="tile__img"/>
+		}
+	</div>
+	<div class="tile__content">
+		<div class="tile__eyebrow">@Model.Eyebrow</div>
+		<h4 class="tile__title">
+			<a class="tile__link" href="@Model.Link">@Model.Title</a>
+		</h4>
+		<div class="tile__date">
+			@Model.StartDate.ToString("dd MMM yyyy")
+			@if (Model.EndDate.HasValue)
+			{
+				@Html.Raw($" - {Model.EndDate.Value:dd MMM yyyy}")
+			}
+		</div>
+		@if (string.IsNullOrEmpty(Model.Location) == false)
+		{
+			<div class="tile__location">@Model.Location</div>
+		}
+	</div>
+</div>

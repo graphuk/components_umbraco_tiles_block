@@ -2,9 +2,11 @@ namespace Graph.Components.TilesBlock
 {
 	public static class NewsTileConfig
 	{
-		public static string Title => "title";
-		public static string Description => "description";
-		public static string Date => "date";
-		public static string Image => "image";
+		public const string PageAlias = "NewsPage";
+		public const string Title = "title";
+		public const string Summary = "summary";
+		public const string Date = "date";
+		public const string Image = "image";
+		public const string Eyebrow = "eyebrow";
 	}
 }

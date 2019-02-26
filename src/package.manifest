@@ -9,6 +9,7 @@
 		}
 	],
 	"javascript": [
-		"/App_Plugins/TilesBlock/TilesBlock.Controller.js"
+		"/App_Plugins/TilesBlock/TilesBlock.Controller.js",
+		"/App_Plugins/TilesBlock/TilesBlock.Resources.js"
 	]
 }
