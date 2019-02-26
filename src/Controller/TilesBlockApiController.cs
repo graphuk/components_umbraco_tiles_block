@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using Umbraco.Web.Editors;
 using Umbraco.Web.Mvc;
@@ -52,9 +53,16 @@ namespace Graph.Components.TilesBlock
 
 	public class TileType
 	{
+		[JsonProperty("alias")]
 		public string Alias { get; set; }
+		
+		[JsonProperty("contentAlias")]
 		public string ContentAlias { get; set; }
+		
+		[JsonProperty("name")]
 		public string Name { get; set; }
+		
+		[JsonProperty("icon")]
 		public string Icon { get; set; }
 	}
 }
