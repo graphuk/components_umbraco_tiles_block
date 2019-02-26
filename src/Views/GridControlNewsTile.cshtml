@@ -28,10 +28,7 @@
 			<div class="tile__summary">@Model.Summary</div> 
 		}
 
-		@if (Model.Date != null)
-		{
-			<div class="tile__date">@Model.Date</div>
-		}
+		<div class="tile__date">@Model.Date.ToString("dd MMM yyyy")</div>
 
 		@if (Model.Link != null && Model.ShowButton)
 		{
